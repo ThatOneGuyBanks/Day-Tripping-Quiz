@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Updated repository, Pages, canonical, social-preview, sitemap, support and security links after the repository was renamed to `Day-Tripping-Quiz`.
+- Expanded backup validation so a release fails when recovery documentation, launchers, CI configuration, tests or validation scripts are missing.
+- Added a clean-room clone procedure and post-restore checklist to the backup guide.
+
 ## 1.0.0-rc.1 — 2026-07-31
 
 - Made every adventure card keyboard operable with a visible focus state.

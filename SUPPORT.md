@@ -1,6 +1,6 @@
 # Support
 
-Report reproducible problems through [GitHub Issues](https://github.com/ThatOneGuyBanks/GeoQuest/issues/new).
+Report reproducible problems through [GitHub Issues](https://github.com/ThatOneGuyBanks/Day-Tripping-Quiz/issues/new).
 
 Please include:
 

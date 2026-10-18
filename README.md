@@ -2,7 +2,7 @@
 
 A GitHub Pages-ready static GPS adventure game with modular JSON route packs.
 
-**[Play Day Tripping Quiz](https://thatoneguybanks.github.io/GeoQuest/)**
+**[Play Day Tripping Quiz](https://thatoneguybanks.github.io/Day-Tripping-Quiz/)**
 
 The current release candidate is local-first: no account, analytics or application server is required. See [Privacy and offline use](PRIVACY.md), [Support](SUPPORT.md), [Security](SECURITY.md) and the [changelog](CHANGELOG.md).
 

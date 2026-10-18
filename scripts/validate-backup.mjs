@@ -31,15 +31,34 @@ function readJson(path) {
 
 for (const path of [
   'index.html', 'privacy.html', 'app.js', 'styles.css', 'service-worker.js',
-  'manifest.webmanifest', 'package.json', 'package-lock.json', '.nojekyll',
+  'manifest.webmanifest', 'package.json', 'package-lock.json', '.nojekyll', '.gitignore',
+  'README.md', 'README.txt', 'BACKUP_AND_RESTORE.md', 'CHANGELOG.md',
+  'PRIVACY.md', 'SECURITY.md', 'SUPPORT.md', 'robots.txt', 'sitemap.xml',
+  'START_GAME_WINDOWS.bat', 'START_GAME_MAC_LINUX.command',
+  '.github/workflows/quality.yml', 'playwright.config.js',
+  'tests/app.spec.js', 'tests/server.mjs', 'scripts/validate-backup.mjs',
+  'packs/README.md', 'packs/PACK_TEMPLATE.json',
   'data/distance-comparisons.json', 'packs/index.json'
 ]) requireFile(path, 'required project file');
 
-readJson('package.json');
 readJson('package-lock.json');
 readJson('data/distance-comparisons.json');
 const manifest = readJson('manifest.webmanifest');
 const packIndex = readJson('packs/index.json');
+
+const packageJson = readJson('package.json');
+if (packageJson?.scripts?.['check:backup'] !== 'node scripts/validate-backup.mjs') {
+  failures.push('package.json check:backup script does not run the backup validator');
+}
+if (packageJson?.scripts?.test !== 'playwright test') {
+  failures.push('package.json test script does not run Playwright');
+}
+if (packageJson?.scripts?.validate !== 'npm run check:backup && npm test') {
+  failures.push('package.json validate script does not run both backup and browser checks');
+}
+if (!packageJson?.devDependencies?.['@playwright/test']) {
+  failures.push('package.json is missing the Playwright test dependency');
+}
 
 if (manifest) {
   for (const icon of manifest.icons ?? []) requireFile(icon.src, 'web manifest icon');

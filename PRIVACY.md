@@ -8,6 +8,6 @@ Day Tripping Quiz has no accounts, advertising or analytics. Adventure progress,
 - Saved clues, scoring and progress can work offline. Live maps, external directions, venue websites and other external links require a connection.
 - Players can export a progress backup, reset their progress in the app or clear the site's browser data.
 
-The complete player-facing notice is published at <https://thatoneguybanks.github.io/GeoQuest/privacy.html>.
+The complete player-facing notice is published at <https://thatoneguybanks.github.io/Day-Tripping-Quiz/privacy.html>.
 
 Last updated: 31 July 2026.

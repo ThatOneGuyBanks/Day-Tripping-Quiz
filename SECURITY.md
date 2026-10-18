@@ -1,6 +1,6 @@
 # Security
 
-For ordinary bugs, use [GitHub Issues](https://github.com/ThatOneGuyBanks/GeoQuest/issues/new).
+For ordinary bugs, use [GitHub Issues](https://github.com/ThatOneGuyBanks/Day-Tripping-Quiz/issues/new).
 
 For a potential security or privacy vulnerability, use GitHub's private vulnerability-reporting option on the repository's **Security** tab when it is available. Do not publish exploit details, private locations, photos or progress backups in a public issue.
 

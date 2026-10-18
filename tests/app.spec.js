@@ -420,7 +420,7 @@ test('a saved adventure reloads and starts while offline', async ({ page, contex
 test('privacy and support information is reachable', async ({ page }) => {
   await openHome(page);
   await expect(page.getByRole('link', { name: 'Privacy & offline use' })).toHaveAttribute('href', 'privacy.html');
-  await expect(page.getByRole('link', { name: 'Report a problem' }).first()).toHaveAttribute('href', /github\.com\/ThatOneGuyBanks\/GeoQuest\/issues\/new/);
+  await expect(page.getByRole('link', { name: 'Report a problem' }).first()).toHaveAttribute('href', /github\.com\/ThatOneGuyBanks\/Day-Tripping-Quiz\/issues\/new/);
   await page.goto('/privacy.html');
   await expect(page.getByRole('heading', { name: 'Your adventure stays yours.' })).toBeVisible();
 });

@@ -12,12 +12,30 @@ Install these tools first:
 Then open PowerShell and run:
 
 ```powershell
-git clone https://github.com/ThatOneGuyBanks/GeoQuest.git D:\day-tripping-quiz
+git clone https://github.com/ThatOneGuyBanks/Day-Tripping-Quiz.git D:\day-tripping-quiz
 Set-Location D:\day-tripping-quiz
 npm ci
 npx playwright install chromium
 npm run validate
 ```
+
+A successful restore ends with the backup validator reporting every route and stop, followed by all Playwright tests passing. Do not copy an existing `node_modules` directory into the clone; `npm ci` must recreate it from the lockfile.
+
+## Clean-room restore proof
+
+Periodically test the public backup in a new temporary directory rather than only testing the working checkout:
+
+```powershell
+$restoreRoot = Join-Path ([System.IO.Path]::GetTempPath()) 'day-tripping-quiz-restore-check'
+git clone https://github.com/ThatOneGuyBanks/Day-Tripping-Quiz.git $restoreRoot
+Set-Location $restoreRoot
+npm ci
+npx playwright install chromium
+npm run validate
+git status --short
+```
+
+The final Git status must be empty. Delete the temporary clone after recording the tested commit and result.
 
 `npm ci` recreates `node_modules` from `package-lock.json`; do not back up or commit `node_modules`. The application itself is static and does not require a build step, database, server, API key or `.env` file. The `START_GAME_WINDOWS.bat` launcher uses Python's simple HTTP server if you want to run the site locally, while the automated tests use the included Node test server.
 
@@ -38,7 +56,17 @@ These are intentionally not stored in the repository:
 - Leaflet 1.9.4 CSS and JavaScript are loaded from `unpkg.com`. Their Subresource Integrity hashes are pinned in `index.html`; the service worker caches them after a successful visit.
 - Map tiles are loaded from `tile.openstreetmap.org`. Recently used tiles may be cached by the browser, but the repository does not contain a map-tile archive.
 - Google Maps, Apple Maps and venue-hours links open external websites and require internet access.
-- GitHub Pages deployment settings and the public site URL live in the GitHub repository settings. After a repository transfer or recreation, enable Pages from the `main` branch/root and update the canonical URLs if the account or repository name changes.
+- GitHub Pages deployment settings and the public site URL live in the GitHub repository settings. After a repository transfer or recreation, enable Pages from the `main` branch/root and update the canonical URLs if the account or repository name changes. The current public URL is <https://thatoneguybanks.github.io/Day-Tripping-Quiz/>.
+
+## Recovery checklist after cloning
+
+1. Confirm `git rev-parse HEAD` is the commit you intended to restore.
+2. Run `npm ci`; do not substitute a floating dependency install.
+3. Install the Playwright Chromium binary and run `npm run validate`.
+4. Start the included local server and open the game through HTTP rather than `file://`.
+5. Check the home screen, one route, the privacy page and offline-save control.
+6. If republishing, restore GitHub Pages from `main` / repository root and verify the canonical Pages URL.
+7. Player progress must be imported separately from a player-created JSON export; it is intentionally not stored in GitHub.
 
 There are no third-party route photographs or audio files at present: every route's `Image` and `Audio` fields are `null`. All locally referenced images are committed under `assets/`.
 
