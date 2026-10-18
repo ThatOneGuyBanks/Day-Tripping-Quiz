@@ -12,8 +12,8 @@ Install these tools first:
 Then open PowerShell and run:
 
 ```powershell
-git clone https://github.com/ThatOneGuyBanks/Day-Tripping-Quiz.git D:\day-tripping-quiz
-Set-Location D:\day-tripping-quiz
+git clone https://github.com/ThatOneGuyBanks/Day-Tripping-Quiz.git "D:\Day Tripping Quiz\Source"
+Set-Location "D:\Day Tripping Quiz\Source"
 npm ci
 npx playwright install chromium
 npm run validate
